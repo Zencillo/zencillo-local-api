@@ -1,0 +1,4 @@
+SELECT CAST(CASE WHEN EXISTS (
+    SELECT 1 FROM dbo.TurnoEmpleado WITH(NOLOCK)
+    WHERE Isla = ? AND Abierto = 1
+) THEN 1 ELSE 0 END AS INT) AS Abierto;

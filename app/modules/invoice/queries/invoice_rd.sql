@@ -1,0 +1,1 @@
+EXEC dbo.FacturacionRDComplete @IdCompania=?, @IdCentroVenta=?, @IdPuntoVenta=?, @CodComprobante=?, @IdFacturaCliente=?, @Identificacion=?, @NombreCliente=?, @IdCVConsolidador=?, @IdPVCOnsolidador=?, @IdResolucion=?, @NumeroFacturaCompleto=?, @PrefijoResolucion=?, @CodigoElectronico=?, @Descripcion=?, @NoValidarResolucion=?, @Anulada=?, @nFacturada=?, @ActualizaResolucion=?;

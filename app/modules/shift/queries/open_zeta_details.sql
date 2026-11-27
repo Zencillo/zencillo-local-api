@@ -1,0 +1,20 @@
+SELECT [IdJornadaZeta]
+        ,[Fecha]
+        ,[HoraApertura]
+        ,[HoraCierre]
+        ,[Abierta]
+        ,[SincronizoApertura]
+        ,[XMLLecturaInicialTanques]
+        ,[XMLLecturaFinalTanques]
+        ,[SincronizoCierre]
+        ,[SincronizoLecturasIniciales]
+        ,[SincronizoLecturasFinales]
+        ,[SincronizoTotalOperaciones]
+        ,[Empleado]
+        ,[ContrasenaEmpleado]
+        ,[ManejaConsola]
+        ,[GuardaVariacion]
+        ,[CodCapturadorApertura]
+        FROM [dbo].[JornadaZeta] WITH(NOLOCK)
+        WHERE Abierta = 1 AND (CAST(? AS int) IS NULL OR Fecha = ?)
+        ORDER BY JornadaZeta.Fecha DESC

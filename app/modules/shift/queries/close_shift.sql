@@ -1,0 +1,6 @@
+UPDATE TURNOEMPLEADO
+    SET ABIERTO = 0,
+        HORACIERRE = ?,
+        XMLCierre = CASE WHEN ? IS NULL THEN XMLCierre ELSE ? END,
+        FECHACIERRE = ?
+    WHERE IDTURNO = ? AND Isla = ?;

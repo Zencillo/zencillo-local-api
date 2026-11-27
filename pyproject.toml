@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zencillo-local-api"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi==0.115.12", "pydantic==2.11.7", "PyJWT==2.10.1",
+  "pyodbc==5.2.0", "uvicorn==0.34.3", "python-dotenv==1.1.1", "cryptography==50.0.2"
+]
+
+[project.optional-dependencies]
+test = ["pytest==8.4.1", "httpx==0.28.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.setuptools.package-data]
+"app.modules.article" = ["queries/*.sql"]
+"app.modules.license" = ["queries/*.sql"]
+"app.modules.shift" = ["queries/*.sql"]
+"app.modules.client" = ["queries/*.sql"]
+"app.modules.price" = ["queries/*.sql"]
+"app.modules.dispatch" = ["queries/*.sql"]
+"app.modules.invoice" = ["queries/*.sql"]

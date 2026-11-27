@@ -1,0 +1,2 @@
+ODBC 18 estricto | TLS / negociación | 08001 | [08001] [Microsoft][ODBC Driver 18 for SQL Server]SSL Provider: La cadena de certificación fue emitida por una entidad en la que no se confía.
+ (-2146893019) (SQLDriverConnect); [08001] [Microsoft][ODBC Driver 18 for SQL Server]Client unable to establish connection. For solutions related to encryption errors, see https://go.microsoft.com/fwlink/?linkid=2226722 (-2146893019)

@@ -1,0 +1,206 @@
+-- SQL Server 2008+: sin TRY_CONVERT / IIF / CONCAT / THROW.
+-- Inserta un registro en dbo.FormaPagoDetalle (mismo contrato que FormaPagoDetalleFacturaBD.createQuery).
+
+IF OBJECT_ID(N'dbo.sp_InsertarFormaPagoDetalle', N'P') IS NOT NULL
+BEGIN
+  DROP PROCEDURE dbo.sp_InsertarFormaPagoDetalle;
+END;
+
+GO
+
+CREATE PROCEDURE dbo.sp_InsertarFormaPagoDetalle
+  @IdVenta INT,
+  @IdTurno INT,
+  @IdentificacionRed VARCHAR(100),
+  @CodigoRespuestaActor VARCHAR(100),
+  @MensajeRespuesta VARCHAR(2000),
+  @SecuencialTransaccion INT,
+  @NumeroLote INT,
+  @HoraTransaccion INT,
+  @FechaTransaccion VARCHAR(23),
+  @NumeroAutorizacion VARCHAR(100),
+  @TID VARCHAR(100),
+  @MID VARCHAR(100),
+  @ValorInteres DECIMAL(18, 4),
+  @MensajeImpresion VARCHAR(2000),
+  @CodigoBanco INT,
+  @NombreBanco VARCHAR(200),
+  @NombreGrupoTarjeta VARCHAR(200),
+  @ModoLectura VARCHAR(100),
+  @NombreTarjetaHabiente NVARCHAR(200),
+  @MontoFijo VARCHAR(100),
+  @IdentificadorAplicacion VARCHAR(100),
+  @AID VARCHAR(100),
+  @TipoCrigtograma VARCHAR(100),
+  @PIN VARCHAR(100),
+  @ARQC VARCHAR(200),
+  @NumeroTarjetaTruncado VARCHAR(100),
+  @FechaVencimientoTarjeta INT,
+  @NumeroTarjetaEncriptada VARCHAR(500),
+  @Impuesto DECIMAL(18, 4),
+  @BaseConImpuesto DECIMAL(18, 4),
+  @BaseSinImpuesto DECIMAL(18, 4),
+  @MontoImpuesto DECIMAL(18, 4),
+  @MontoTotal DECIMAL(18, 4),
+  @IdFormaPago INT,
+  @Host VARCHAR(200),
+  @HostName VARCHAR(200),
+  @TipoTarjeta VARCHAR(100),
+  @TipoVenta VARCHAR(100),
+  @NumeroTarjeta VARCHAR(100),
+  @LoteAbierto VARCHAR(100),
+  @NombreTH NVARCHAR(200),
+  @Aprobacion VARCHAR(100),
+  @IdTerminal VARCHAR(100),
+  @NumeroReferencia VARCHAR(100),
+  @CodigoReferencia VARCHAR(100),
+  @IdComercio VARCHAR(100),
+  @DiferidoyQuickPayment VARCHAR(200),
+  @Reservado VARCHAR(500),
+  @ArchivoFirma NVARCHAR(MAX),
+  @TVR VARCHAR(200),
+  @TSI VARCHAR(200),
+  @IdCashBack INT,
+  @Anulada BIT,
+  @MultiplesVentas BIT
+WITH ENCRYPTION
+AS
+BEGIN
+  SET NOCOUNT ON;
+
+  DECLARE @ErrMsg NVARCHAR(4000);
+  DECLARE @ErrNum INT;
+  DECLARE @ErrLine INT;
+
+  BEGIN TRY
+  INSERT INTO dbo.FormaPagoDetalle (
+    IdVenta,
+    IdTurno,
+    IdentificacionRed,
+    CodigoRespuestaActor,
+    MensajeRespuesta,
+    SecuencialTransaccion,
+    NumeroLote,
+    HoraTransaccion,
+    FechaTransaccion,
+    NumeroAutorizacion,
+    TID,
+    MID,
+    ValorInteres,
+    MensajeImpresion,
+    CodigoBanco,
+    NombreBanco,
+    NombreGrupoTarjeta,
+    ModoLectura,
+    NombreTarjetaHabiente,
+    MontoFijo,
+    IdentificadorAplicacion,
+    AID,
+    TipoCrigtograma,
+    PIN,
+    ARQC,
+    NumeroTarjetaTruncado,
+    FechaVencimientoTarjeta,
+    NumeroTarjetaEncriptada,
+    Impuesto,
+    BaseConImpuesto,
+    BaseSinImpuesto,
+    MontoImpuesto,
+    MontoTotal,
+    IdFormaPago,
+    Host,
+    HostName,
+    TipoTarjeta,
+    TipoVenta,
+    NumeroTarjeta,
+    LoteAbierto,
+    NombreTH,
+    Aprobacion,
+    IdTerminal,
+    NumeroReferencia,
+    CodigoReferencia,
+    IdComercio,
+    DiferidoyQuickPayment,
+    Reservado,
+    ArchivoFirma,
+    TVR,
+    TSI,
+    IdCashBack,
+    Anulada,
+    MultiplesVentas
+  )
+  VALUES (
+    @IdVenta,
+    @IdTurno,
+    @IdentificacionRed,
+    @CodigoRespuestaActor,
+    @MensajeRespuesta,
+    @SecuencialTransaccion,
+    @NumeroLote,
+    @HoraTransaccion,
+    CONVERT(DATETIME, @FechaTransaccion, 120),
+    @NumeroAutorizacion,
+    @TID,
+    @MID,
+    @ValorInteres,
+    @MensajeImpresion,
+    @CodigoBanco,
+    @NombreBanco,
+    @NombreGrupoTarjeta,
+    @ModoLectura,
+    @NombreTarjetaHabiente,
+    @MontoFijo,
+    @IdentificadorAplicacion,
+    @AID,
+    @TipoCrigtograma,
+    @PIN,
+    @ARQC,
+    @NumeroTarjetaTruncado,
+    @FechaVencimientoTarjeta,
+    @NumeroTarjetaEncriptada,
+    @Impuesto,
+    @BaseConImpuesto,
+    @BaseSinImpuesto,
+    @MontoImpuesto,
+    @MontoTotal,
+    @IdFormaPago,
+    @Host,
+    @HostName,
+    @TipoTarjeta,
+    @TipoVenta,
+    @NumeroTarjeta,
+    @LoteAbierto,
+    @NombreTH,
+    @Aprobacion,
+    @IdTerminal,
+    @NumeroReferencia,
+    @CodigoReferencia,
+    @IdComercio,
+    @DiferidoyQuickPayment,
+    @Reservado,
+    @ArchivoFirma,
+    @TVR,
+    @TSI,
+    @IdCashBack,
+    @Anulada,
+    @MultiplesVentas
+  );
+  END TRY
+  BEGIN CATCH
+    SELECT
+      @ErrMsg = ERROR_MESSAGE(),
+      @ErrNum = ERROR_NUMBER(),
+      @ErrLine = ERROR_LINE();
+
+    RAISERROR (
+      'sp_InsertarFormaPagoDetalle | Error %d (Linea %d): %s',
+      16,
+      1,
+      @ErrNum,
+      @ErrLine,
+      @ErrMsg
+    );
+  END CATCH;
+END;
+
+GO

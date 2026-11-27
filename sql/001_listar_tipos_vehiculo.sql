@@ -1,0 +1,13 @@
+-- OBSOLETO: archivo historico. Retirado del despliegue. No instalar.
+-- -- Ejecutar manualmente con la identidad de despliegue, fuera de la API.
+-- IF OBJECT_ID(N'dbo.sp_LocalApi_ListarTiposVehiculo', N'P') IS NULL
+--     EXEC(N'CREATE PROCEDURE dbo.sp_LocalApi_ListarTiposVehiculo AS BEGIN SET NOCOUNT ON; END');
+-- GO
+-- ALTER PROCEDURE dbo.sp_LocalApi_ListarTiposVehiculo
+-- AS
+-- BEGIN
+--     SET NOCOUNT ON;
+--     SELECT idtipovehiculo, tipovehiculo
+--     FROM dbo.tipo_vehiculo;
+-- END;
+-- GO
